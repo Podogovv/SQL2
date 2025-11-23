@@ -71,8 +71,8 @@ select
     dob,
     extract(year from age(current_date, dob)) as age
 from customer
-where job_industry_category = 'it' 
-    and job_title like 'senior%'
+where job_industry_category = 'IT' 
+    and job_title like 'Senior%'
     and extract(year from age(current_date, dob)) > 35
 
 union all
@@ -85,8 +85,8 @@ select
     dob,
     extract(year from age(current_date, dob)) as age
 from customer
-where job_industry_category = 'financial services' 
-    and job_title like 'lead%'
+where job_industry_category = 'Financial Services' 
+    and job_title like 'Lead%'
     and extract(year from age(current_date, dob)) > 35;
 
 select distinct p.brand
