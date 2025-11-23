@@ -95,15 +95,20 @@ join customer c on o.customer_id = c.customer_id
 join order_items oi on o.order_id = oi.order_id
 join product p on oi.product_id = p.product_id
 where c.job_industry_category = 'Financial Services'
-  and p.brand not in (
-    select distinct p2.brand
-    from orders o2
-    join customer c2 on o2.customer_id = c2.customer_id
-    join order_items oi2 on o2.order_id = oi2.order_id
-    join product p2 on oi2.product_id = p2.product_id
-    where c2.job_industry_category = 'IT'
-  )
-order by p.brand;
+  and p.brand is not null
+  and p.brand != ''
+
+except
+
+select distinct p.brand
+from orders o
+join customer c on o.customer_id = c.customer_id
+join order_items oi on o.order_id = oi.order_id
+join product p on oi.product_id = p.product_id
+where c.job_industry_category = 'IT'
+  and p.brand is not null
+  and p.brand != ''
+order by brand;
 
 
 with state_avg_property as (
