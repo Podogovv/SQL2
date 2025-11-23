@@ -62,7 +62,6 @@ left join orders o
 group by d
 order by d;
 
-
 select 
     first_name,
     last_name,
@@ -74,9 +73,7 @@ from customer
 where job_industry_category = 'IT' 
     and job_title like 'Senior%'
     and extract(year from age(current_date, dob)) > 35
-
 union all
-
 select 
     first_name,
     last_name,
@@ -99,7 +96,6 @@ where c.job_industry_category = 'Financial Services'
   and p.brand != ''
 
 except
-
 select distinct p.brand
 from orders o
 join customer c on o.customer_id = c.customer_id
@@ -109,7 +105,6 @@ where c.job_industry_category = 'IT'
   and p.brand is not null
   and p.brand != ''
 order by brand;
-
 
 with state_avg_property as (
     select
